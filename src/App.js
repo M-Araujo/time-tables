@@ -32,13 +32,10 @@ function App() {
       setAnswer('');
       setIsCorrect('');
     }, 1000)
-
-
   }
 
   return (
     <div data-testid="app" className="App">
-
       <Box
         p={6}
         maxW="sm"
@@ -53,11 +50,11 @@ function App() {
       >
 
         <HStack spacing={4}>
-
           <Heading size="lg" mg={4}>
-            {multiplicand} * {multiplier} =
+            <span data-testid="multiplicand"></span>{multiplicand} * <span data-testid="multiplier"></span>{multiplier} =
           </Heading>
           <Input
+            data-testid="answer"
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
             onKeyDown={(event) => {
@@ -72,20 +69,18 @@ function App() {
             display="inline-block"
           />
 
-          <Button colorScheme="blue" onClick={validateAnswer}>Ok</Button>
+          <Button data-testid="ok" colorScheme="blue" onClick={validateAnswer}>Ok</Button>
 
         </HStack>
         {isCorrect !== '' && (
           isCorrect == '1' ? (
 
-            <Text mt={4} fontWeight="bold" color="green.500"> Correct!</Text>
+            <Text data-testid="successMessage" mt={4} fontWeight="bold" color="green.500"> Correct!</Text>
           ) : (
-            <Text mt={4} fontWeight="bold" color="red.500"> Wrong answer</Text>
+              <Text data-testid="errorMessage" mt={4} fontWeight="bold" color="red.500"> Wrong answer</Text>
           )
         )}
-
       </Box>
-
     </div>
   );
 }
